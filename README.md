@@ -1,6 +1,11 @@
 # bincapz-action
 
-This action is used to run the [bincapz](https://github.com/chainguard-dev/bincapz) tool on the repository to check for the binary compatibility of the changes made in the repository.  It can run as a PR check.
+Enumerate and diff [capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) of all files in a repository (and compiled artifacts)! 📦🔍
+
+This action runs the [bincapz](https://github.com/chainguard-dev/bincapz) tool from [Chainguard](https://chainguard.dev) on a repository.  It can run as a PR check or to upload a release artifact.
+
+- [example workflows](examples)
+- [example reports](output-samples)
 
 ## pull request changes
 
