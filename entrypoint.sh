@@ -10,23 +10,34 @@ fi
 # sort out input formats
 case "$INPUT_FORMAT" in
   "json")
-    FILE_EXT="json"
+    echo "Generating JSON report"
+    find . -type f -not -path '*/\.git/*' | while read -r file; do
+      bincapz --format=json "$file" >> raw-report.json
+    done
+    jq -s 'reduce .[] as $item ({}; .Files += $item.Files)' raw-report.json > bincapz-report.json
+    rm raw-report.json
     ;;
   "markdown")
-    FILE_EXT="md"
+    echo "Generating markdown table of results"
+    find . -type f -not -path '*/\.git/*' | while read -r file; do
+      bincapz --format=markdown "$file" >> bincapz-report.md
+    done
     ;;
   "yaml")
-    FILE_EXT="yaml"
+    echo "Generating YAML report"
+    echo "files:" > bincapz-report.yaml
+    find . -type f -not -path '*/\.git/*' | while read -r file; do
+      bincapz --format=yaml "$file" >> raw-report.yaml
+      tr -d '\n' < raw-report.yaml | \
+        sed '0,/files:/!{/files:/d}' raw-report.yaml > temp && \
+        cat temp >> bincapz-report.yaml
+    rm raw-report.yaml temp
+    done
     ;;
   *)
     echo "Invalid format provided, using default markdown"
     INPUT_FORMAT="markdown"
-    FILE_EXT="md"
     ;;
 esac
 
 # generate report
-find . -type f -not -path '*/\.git/*' | while read -r file; do
-     echo "Processing $file"
-     bincapz --format="$INPUT_FORMAT" "$file" >> bincapz-report."$FILE_EXT"
-done
