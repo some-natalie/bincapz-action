@@ -16,9 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write # for uploading the finished container
-    strategy:
-      matrix:
-        arch: [amd64, arm64]
 
     steps:
       - name: Checkout
@@ -42,6 +39,6 @@ jobs:
         with:
           file: Dockerfile
           push: true
-          platforms: linux/${{ matrix.arch }}
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/${{ github.repository }}:latest
