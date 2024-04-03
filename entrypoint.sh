@@ -26,7 +26,6 @@ case "$INPUT_FORMAT" in
 esac
 
 # generate report
-echo "Generating report.md" > bincapz-report."$FILE_EXT"
 find . -type f -not -path '*/\.git/*' | while read -r file; do
      echo "Processing $file"
      bincapz --format="$INPUT_FORMAT" "$file" >> bincapz-report."$FILE_EXT"
