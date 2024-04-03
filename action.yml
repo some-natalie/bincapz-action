@@ -6,22 +6,10 @@ branding:
   color: 'purple'
 
 inputs:
-  token:
-    description: 'GitHub token'
-    required: true
-    default: ${{ github.token }}
-  base:
-    description: 'Base git revision'
+  work-dir:
+    description: 'Working directory'
     required: false
-    default: ${{ github.base_ref }}
-  head:
-    description: 'Head git revision'
-    required: false
-    default: ${{ github.head_ref }}
-  sha:
-    description: 'SHA of the commit to check'
-    required: false
-    default: ${{ github.sha }}
+    default: ${{ github.workspace }}
 
 runs:
   using: docker
