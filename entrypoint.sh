@@ -9,7 +9,7 @@ fi
 
 # generate report
 echo "Generating report.md" > report.md
-find . -type f | while read -r file; do
+find . -type f -not -path '*/\.git/*' | while read -r file; do
      echo "Processing $file"
      bincapz --format=markdown "$file" >> report.md
 done
