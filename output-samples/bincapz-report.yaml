@@ -1,0 +1,121 @@
+files:
+    ./README.md:
+        path: ""
+        sha256: ""
+        skipped: data file
+        riskscore: 0
+
+    ./nc:
+        path: ./nc
+        sha256: d338b3e24346ab0be3ad82f71784633d380c809754beacb931f6a4b64b57d5a4
+        meta:
+            entitlements: |-
+                com.apple.private.network.intcoproc.restricted.development
+                com.apple.security.network.client
+                com.apple.security.network.server
+            format: macho
+            program_name: PROGRAM:nc
+        syscalls:
+            - accept
+            - connect
+            - pthread_create
+            - recv
+            - send
+            - sendmsg
+            - sendto
+        pledge:
+            - inet
+        behaviors:
+            net/hostport/parse:
+                description: Network address and service translation
+                matchstrings:
+                    - freeaddrinfo
+                    - getaddrinfo
+                riskscore: 1
+                risklevel: LOW
+            net/http/request:
+                description: makes HTTP requests
+                matchstrings:
+                    - HTTP/1.
+                riskscore: 1
+                risklevel: LOW
+            net/interface/get:
+                description: get network interfaces by name or index
+                matchstrings:
+                    - if_indextoname
+                    - if_nametoindex
+                riskscore: 1
+                risklevel: LOW
+            net/ip/string:
+                description: converts IP address from byte to string
+                matchstrings:
+                    - inet_ntop
+                riskscore: 2
+                risklevel: MEDIUM
+            net/socket/connect:
+                description: initiate a connection on a socket
+                matchstrings:
+                    - _connectx
+                riskscore: 2
+                risklevel: MEDIUM
+            net/socket/listen:
+                description: listen on a socket
+                matchstrings:
+                    - accept
+                    - listen
+                    - socket
+                riskscore: 1
+                risklevel: LOW
+            net/socket/receive:
+                description: receive a message from a socket
+                matchstrings:
+                    - recvfrom
+                    - recvmsg
+                riskscore: 1
+                risklevel: LOW
+            net/socket/send:
+                description: send a message to a socket
+                matchstrings:
+                    - sendmsg
+                riskscore: 1
+                risklevel: LOW
+            net/socks5:
+                description: Supports SOCK5 proxies
+                matchstrings:
+                    - CONNECT %s
+                    - SOCKS5
+                riskscore: 2
+                risklevel: MEDIUM
+            process/multithreaded:
+                description: uses pthreads
+                matchstrings:
+                    - pthread_create
+                riskscore: 1
+                risklevel: LOW
+        riskscore: 2
+        risklevel: MEDIUM
+
+    ./.github/workflows/action.yaml:
+        path: ""
+        sha256: ""
+        skipped: data file
+        riskscore: 0
+
+    ./.github/workflows/bincapz.yaml:
+        path: ""
+        sha256: ""
+        skipped: data file
+        riskscore: 0
+
+    ./.github/workflows/release.yaml:
+        path: ""
+        sha256: ""
+        skipped: data file
+        riskscore: 0
+
+    ./bincapz-report.yaml:
+        path: ""
+        sha256: ""
+        skipped: data file
+        riskscore: 0
+

@@ -1,0 +1,145 @@
+{
+  "Files": {
+    "./README.md": {
+      "Path": "",
+      "SHA256": "",
+      "Skipped": "data file",
+      "RiskScore": 0
+    },
+    "./nc": {
+      "Path": "./nc",
+      "SHA256": "d338b3e24346ab0be3ad82f71784633d380c809754beacb931f6a4b64b57d5a4",
+      "Meta": {
+        "entitlements": "com.apple.private.network.intcoproc.restricted.development\ncom.apple.security.network.client\ncom.apple.security.network.server",
+        "format": "macho",
+        "program_name": "PROGRAM:nc"
+      },
+      "Syscalls": [
+        "accept",
+        "connect",
+        "pthread_create",
+        "recv",
+        "send",
+        "sendmsg",
+        "sendto"
+      ],
+      "Pledge": [
+        "inet"
+      ],
+      "Behaviors": {
+        "net/hostport/parse": {
+          "Description": "Network address and service translation",
+          "MatchStrings": [
+            "freeaddrinfo",
+            "getaddrinfo"
+          ],
+          "RiskScore": 1,
+          "RiskLevel": "LOW"
+        },
+        "net/http/request": {
+          "Description": "makes HTTP requests",
+          "MatchStrings": [
+            "HTTP/1."
+          ],
+          "RiskScore": 1,
+          "RiskLevel": "LOW"
+        },
+        "net/interface/get": {
+          "Description": "get network interfaces by name or index",
+          "MatchStrings": [
+            "if_indextoname",
+            "if_nametoindex"
+          ],
+          "RiskScore": 1,
+          "RiskLevel": "LOW"
+        },
+        "net/ip/string": {
+          "Description": "converts IP address from byte to string",
+          "MatchStrings": [
+            "inet_ntop"
+          ],
+          "RiskScore": 2,
+          "RiskLevel": "MEDIUM"
+        },
+        "net/socket/connect": {
+          "Description": "initiate a connection on a socket",
+          "MatchStrings": [
+            "_connectx"
+          ],
+          "RiskScore": 2,
+          "RiskLevel": "MEDIUM"
+        },
+        "net/socket/listen": {
+          "Description": "listen on a socket",
+          "MatchStrings": [
+            "accept",
+            "listen",
+            "socket"
+          ],
+          "RiskScore": 1,
+          "RiskLevel": "LOW"
+        },
+        "net/socket/receive": {
+          "Description": "receive a message from a socket",
+          "MatchStrings": [
+            "recvfrom",
+            "recvmsg"
+          ],
+          "RiskScore": 1,
+          "RiskLevel": "LOW"
+        },
+        "net/socket/send": {
+          "Description": "send a message to a socket",
+          "MatchStrings": [
+            "sendmsg"
+          ],
+          "RiskScore": 1,
+          "RiskLevel": "LOW"
+        },
+        "net/socks5": {
+          "Description": "Supports SOCK5 proxies",
+          "MatchStrings": [
+            "CONNECT %s",
+            "SOCKS5"
+          ],
+          "RiskScore": 2,
+          "RiskLevel": "MEDIUM"
+        },
+        "process/multithreaded": {
+          "Description": "uses pthreads",
+          "MatchStrings": [
+            "pthread_create"
+          ],
+          "RiskScore": 1,
+          "RiskLevel": "LOW"
+        }
+      },
+      "RiskScore": 2,
+      "RiskLevel": "MEDIUM"
+    },
+    "./.github/workflows/action.yaml": {
+      "Path": "",
+      "SHA256": "",
+      "Skipped": "data file",
+      "RiskScore": 0
+    },
+    "./.github/workflows/bincapz.yaml": {
+      "Path": "",
+      "SHA256": "",
+      "Skipped": "data file",
+      "RiskScore": 0
+    },
+    "./.github/workflows/release.yaml": {
+      "Path": "",
+      "SHA256": "",
+      "Skipped": "data file",
+      "RiskScore": 0
+    },
+    "./bincapz-report.yaml": {
+      "Path": "",
+      "SHA256": "",
+      "Skipped": "data file",
+      "RiskScore": 0
+    }
+  }
+}
