@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # change to directory with source code, if set to something not github.workspace
-if [ -z "$WORKDIR" ]; then
+if [ -z "$INPUT_WORKDIR" ]; then
   echo "No source directory provided, using current directory"
 else
-  cd "$WORKDIR" || exit 2
+  cd "$INPUT_WORKDIR" || exit 2
 fi
 
 # generate report
