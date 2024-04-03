@@ -6,7 +6,7 @@ branding:
   color: 'purple'
 
 inputs:
-  work-dir:
+  workdir:
     description: 'Working directory'
     required: false
     default: ${{ github.workspace }}

@@ -1,6 +1,13 @@
 #!/bin/sh
 
-# recursive for loop for every file in every directory and subdirectory
+# change to directory with source code, if set to something not github.workspace
+if [ -z "$WORKDIR" ]; then
+  echo "No source directory provided, using current directory"
+else
+  cd "$WORKDIR" || exit 2
+fi
+
+# generate report
 echo "Generating report.md" > report.md
 find . -type f | while read -r file; do
      echo "Processing $file"
