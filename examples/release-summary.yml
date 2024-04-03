@@ -1,0 +1,28 @@
+name: run bincapz comparison
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  scan-with-bincapz:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+    
+      # do any build steps here if/as needed
+
+      - name: Run bincapz
+        uses: some-natalie/bincapz-action@main
+        with:
+          format: "json"
+      
+      - name: Upload report to release
+        run: |
+          gh release upload ${{github.event.release.tag_name}} bincapz-report.json

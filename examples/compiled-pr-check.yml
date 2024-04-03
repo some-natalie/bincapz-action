@@ -29,12 +29,13 @@ jobs:
         uses: some-natalie/bincapz-action@main
         with:
           workdir: "prior-commit"
+          format: "markdown"
       
       - name: Upload bincapz results
         uses: actions/upload-artifact@v4
         with:
           name: prior-results
-          path: prior-commit/report.md
+          path: prior-commit/bincapz-report.md
 
       - name: Checkout the current code
         uses: actions/checkout@v4
@@ -48,12 +49,13 @@ jobs:
         uses: some-natalie/bincapz-action@main
         with:
           workdir: "current-commit"
+          format: "markdown"
       
       - name: Upload bincapz results
         uses: actions/upload-artifact@v4
         with:
           name: current-results
-          path: current-commit/report.md
+          path: current-commit/bincapz-report.md
   
   diff-bincapz-results:
     runs-on: ubuntu-latest

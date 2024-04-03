@@ -10,6 +10,10 @@ inputs:
     description: 'Working directory'
     required: false
     default: ${{ github.workspace }}
+  format:
+    description: 'Output format'
+    required: true
+    default: 'markdown'
 
 runs:
   using: docker
