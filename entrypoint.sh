@@ -11,7 +11,12 @@ fi
 case "$INPUT_FORMAT" in
   "json")
     echo "Generating JSON report"
-    find . -type f -not -path '*/\.git/*' | while read -r file; do
+    if [ -z "$INPUT_FILES" ]; then
+      files=$(find . -type f -not -path '*/\.git/*')
+    else
+      files="$INPUT_FILES"
+    fi
+    for file in $files; do
       bincapz --format=json "$file" >> raw-report.json
     done
     jq -s 'reduce .[] as $item ({}; .Files += $item.Files)' raw-report.json > bincapz-report.json
@@ -19,14 +24,24 @@ case "$INPUT_FORMAT" in
     ;;
   "markdown")
     echo "Generating markdown table of results"
-    find . -type f -not -path '*/\.git/*' | while read -r file; do
+    if [ -z "$INPUT_FILES" ]; then
+      files=$(find . -type f -not -path '*/\.git/*')
+    else
+      files="$INPUT_FILES"
+    fi
+    for file in $files; do
       bincapz --format=markdown "$file" >> bincapz-report.md
     done
     ;;
   "yaml")
     echo "Generating YAML report"
     echo "files:" > bincapz-report.yaml
-    find . -type f -not -path '*/\.git/*' | while read -r file; do
+    if [ -z "$INPUT_FILES" ]; then
+      files=$(find . -type f -not -path '*/\.git/*')
+    else
+      files="$INPUT_FILES"
+    fi
+    for file in $files; do
       bincapz --format=yaml "$file" >> raw-report.yaml
       tr -d '\n' < raw-report.yaml | \
         sed '0,/files:/!{/files:/d}' raw-report.yaml > temp && \

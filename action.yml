@@ -14,6 +14,9 @@ inputs:
     description: 'Output format'
     required: true
     default: 'markdown'
+  files:
+    description: 'Files to analyze'
+    required: false
 
 runs:
   using: docker
