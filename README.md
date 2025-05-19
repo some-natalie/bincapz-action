@@ -1,5 +1,8 @@
 # bincapz-action
 
+> [!WARNING]
+> this is archived.  please use the upstream project [malcontent](https://github.com/chainguard-dev/malcontent) directly.  for some examples on how to do this with GitHub Actions, please see here <https://github.com/some-natalie/some-natalie/tree/main/malcontent>.
+
 Enumerate and diff [capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) of all files in a repository (and compiled artifacts)! 📦🔍
 
 This action runs the [bincapz](https://github.com/chainguard-dev/bincapz) tool from [Chainguard](https://chainguard.dev) on a repository.  It can run as a PR check, add a report as a release artifact, or any other place you may want to have eyes on binary differences.
